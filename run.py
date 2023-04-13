@@ -30,7 +30,7 @@ API_LIST = [
 ]
 
 
-# 根路径返回HTML页面
+# 访问地址/(根路径)返回HTML页面
 @app.get("/")
 async def root(request: Request):
     # 存储解析后的所有数据
@@ -130,7 +130,7 @@ def sort_data(data: List[Dict]) -> List[Dict]:
 if __name__ == "__main__":
     uvicorn.run(
         "run:app",
-        host="127.0.0.1",
+        host="0.0.0.0",
         port=9101,
         log_level="info",
         reload=True
