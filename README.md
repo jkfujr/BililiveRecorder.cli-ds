@@ -1,6 +1,8 @@
 # 简介
 
-![如图](https://user-images.githubusercontent.com/39889850/231891579-b10bfbed-0a82-4562-8cb5-c340d41deb8f.png)
+![截图_2023-04-14_06-16-48](https://user-images.githubusercontent.com/39889850/231895578-1c243467-7f52-4ea3-a9ab-0eb1919220d7.png)
+
+
 
 一个用python简单实现的录播姬命令行的信息展示(
 
@@ -19,3 +21,10 @@
     $ python run.py
 
 ### 4. 访问 [http://127.0.0.1:9101](http://127.0.0.1:9101) (默认的情况下)
+
+
+## 二、联系方式
+
+Rec-NIC 今天也是咕咕咕的一天: [722935608](https://jq.qq.com/?_wv=1027&k=KI1Ly3kG)
+
+(录播姬非官方闲聊群但，gen佬也在)
