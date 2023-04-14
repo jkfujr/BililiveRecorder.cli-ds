@@ -8,196 +8,17 @@
     <title>录播姬状态捏</title>
     <!-- lcl css -->
     <link rel="stylesheet" href="../assets/css/min.css" />
-    <!--bootstrap css cdn-->
-    <link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-      crossorigin="anonymous"
-      onerror="this.onerror=null;this.rel='stylesheet';this.href='../assets/css/bootstrap.min.css'"
-      />
-    <!-- bootstrap cdn文件加载失败就加载bootstrap本地文件-->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css"
-      crossorigin="anonymous" />
-    <!-- fontawesome cdn -->
-    <link rel="stylesheet"
-      href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css"
-      crossorigin="anonymous" />
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="../assets/css/bootstrap/bootstrap.min.css"
+      crossorigin="anonymous">
+    <!--fontawesome js-->
+    <script src="../assets/js/fontawesome/min.js" crossorigin="anonymous"></script>
     <!-- bootstrap js cdn -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    <script src="../assets/js/bootstrap/bootstrap.bundle.js"
       crossorigin="anonymous"></script>
   </head>
 
   <style>
-  /* 整体框架 */
-  body {
-    /* 随机二刺螈图 */
-    background-image: url("https://www.loliapi.com/acg/pc/");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center top;
-    font-family: "Microsoft YaHei";
-  }
-
-
-
-  /* 主内容区-框架 */
-  .main-frame {
-    position: fixed;
-    top: 6.5%;
-    bottom: 0;
-    right: 0;
-    width: 85.5%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.50);
-    box-shadow:
-      inset 0rem 0rem .625rem rgba(0, 0, 0, 0.1),
-      inset .3125rem .3125rem .3125rem rgba(0, 0, 0, 0.1);
-    /* 不允许任何溢出的内容展现在元素之外 */
-    overflow-y: hidden;
-    /* 层级1 */
-    z-index: 1;
-  }
-
-
-
-
-  /* 侧边栏-框架，并作为容器包含"搜索框"、"数据面板"、"侧边栏" */
-  .sidebar-frame {
-    position: fixed;
-    top: 6.5%;
-    bottom: 0;
-    left: 0;
-    width: 14.5%;
-    max-width: 14.5%;
-    padding: 0;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-right: .0313rem solid rgba(51, 54, 57, 0.5);
-    /* 层级3 */
-    z-index: 3;
-  }
-
-  /* 侧边栏-搜索框 */
-  .sidebar-search {
-    position: fixed;
-    top: 4.5rem;
-    left: 0;
-    width: 14.5%;
-    display: block;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #ff0000;
-    background-color: rgba(255, 255, 255, 0.5);
-    background-clip: padding-box;
-    appearance: none;
-    border: .0625rem solid rgba(0, 0, 0, 0.25);
-    /* 层级2 */
-    z-index: 2;
-  }
-
-
-  /* 侧边栏-数据面板 */
-  #sidebar-datapanel {
-    position: fixed;
-    top: 7.5rem;
-    left: 0;
-    width: 14.5%;
-    display: block;
-    padding: .375rem .75rem;
-    color: #212529;
-    border-radius: .3125rem;
-    font-size: 1.5625rem;
-    background-color: rgba(255, 255, 255, 0.5);
-    background-clip: padding-box;
-    border: .0625rem solid rgba(0, 0, 0, 0.25);
-    /* 层级2 */
-    z-index: 2;
-  }
-
-
-
-  /* 侧边栏 */
-  .sidebar {
-    position: fixed;
-    top: 13.5625rem;
-    left: 0;
-    width: 14.45%;
-    display: block;
-    height: calc(100%);
-    /* 如果内容超出高度，显示滚动条 */
-    overflow-y: auto;
-    background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(.5rem);
-    border-top: .0625rem solid rgba(0, 0, 0, 0.5);
-    /* 层级2 */
-    z-index: 2;
-  }
-
-  /* 侧边栏-侧边栏链接添加过渡效果 */
-  /* 有些许抖动，在意就自己注释掉 */
-  .sidebar a {
-    transition: all 0.3s ease-in-out;
-  }
-
-  /* 侧边栏-鼠标悬浮于侧边栏链接上时，将链接文字变成白色，并设定背景颜色与透明度 */
-  .sidebar a:hover {
-    color: rgb(255, 255, 255);
-    background-color: rgb(108, 117, 125);
-  }
-
-
-  /* 侧边栏-数据-tag */
-  sidebar-data-tag {
-    float: right;
-    font-size: .625rem;
-    height: 1.25rem;
-    line-height: 1.25rem;
-    padding: 0 .5rem;
-    margin-left: .5rem;
-    border-radius: .625rem;
-    font-weight: 700;
-  }
-
-  /* 侧边栏-数据-tag-直播中 */
-  .sidebar-data-tag-streaming {
-    background-color: rgba(255, 0, 0, 0.8);
-    color: #fff;
-
-  }
-
-  /* 侧边栏-数据-tag-摸鱼中 */
-  .sidebar-data-tag-not-streaming {
-    background-color: rgba(0, 128, 0, 0.8);
-    color: #fff;
-  }
-
-  /* 侧边栏-滚动条 */
-  .sidebar::-webkit-scrollbar {
-    width: .625rem;
-    height: .625rem;
-  }
-
-  /* 侧边栏-滚动条-轨道 */
-  .sidebar::-webkit-scrollbar-track {
-    background-color: rgb(245, 245, 245);
-  }
-
-  /* 侧边栏-滚动条-滑块 */
-  .sidebar::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: .3125rem;
-  }
-
-  /* 侧边栏-滚动条-滑块-拖动状态下动画 */
-  .sidebar::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 0, 0, 0.3);
-  }
-
-
-
   /* 导航栏 */
   .navbar {
     position: fixed;
@@ -213,8 +34,9 @@
     backdrop-filter: blur(.5rem);
     border-bottom: .0313rem solid rgba(51, 54, 57, 0.5);
   }
-</style>
+  </style>
   <script>
+
   /* 导根据录播姬ID获取详细数据 */
   function getLiveRoomData(id) {
     // 发送请求获取单独直播间的数据
@@ -223,10 +45,14 @@
       // 处理数据，在该函数内渲染详细数据
       .then(data => {
         document.getElementById('liveRoomTitle').innerText = data['直播间标题'];
-        document.getElementById('streaming').innerText = '直播状态:' + (data['直播状态'] ? '直播中' : '摸鱼中');
-        document.getElementById('recording').innerText = '录制状态:' + (data['录制状态'] ? '录制中' : '监控中');
+        let roomId = data['直播间ID'];
+        let bililive = 'https://live.bilibili.com/' + roomId;
+        document.getElementById('roomIdLink').innerHTML = '直播间ID:  <a href="' + bililive + '">' + roomId + '</a>';
+        document.getElementById('streaming').innerText = '直播状态: ' + (data['直播状态'] ? '直播中' : '摸鱼中');
+        document.getElementById('recording').innerText = '录制状态: ' + (data['录制状态'] ? '录制中' : '监控中');
       });
   }
+
 
   /* 切换侧边栏的选中状态 */
   function changeActiveItem(item) {
@@ -261,18 +87,18 @@
       let icon = document.createElement('i');
 
       tag.classList.add('tag');
-      icon.classList.add('fas');
-      icon.classList.add('fa-video');
-      icon.classList.add('fa-xs');
-
       if (currentData.isStreaming) {
+        // 侧边栏-数据-tag-直播中-样式添加
         tag.classList.add('sidebar-data-tag-streaming');
-        icon.classList.add('fa-video');
+        // 侧边栏-数据-tag-直播中-图标添加
+        icon.classList.add('fa-solid', 'fa-video', "fa-fade");
         tag.appendChild(icon);
         tag.appendChild(document.createTextNode(''));
       } else {
+        // 侧边栏-数据-tag-直播中-样式添加
         tag.classList.add('sidebar-data-tag-not-streaming');
-        icon.classList.add('fa-times');
+        // 侧边栏-数据-tag-直播中-图标添加
+        icon.classList.add('fa-solid', 'fa-video');
         tag.appendChild(icon);
         tag.appendChild(document.createTextNode(''));
       }
@@ -303,7 +129,7 @@
     /* 遍历排序后的列表渲染侧边栏 */
     for (let liveRoom of sortedListedData) {
       const item = document.createElement('a');
-      item.classList.add('list-group-item', 'list-group-item-action');
+      item.classList.add('list-group-item');
       // 从更新后的数据中渲染项目标题（含TAG）
       item.innerHTML = liveRoom.taggedUsername;
       item.addEventListener('click', () => {
@@ -318,7 +144,7 @@
     const searchBox = document.createElement('input');
     searchBox.type = 'search';
     searchBox.placeholder = '搜索用户名';
-    searchBox.classList.add('form-control', 'mb-3', 'sidebar-search');
+    searchBox.classList.add('sidebar-search');
     searchBox.autocomplete = 'off';
     sidebarFrame.insertBefore(searchBox, sidebarFrame.firstChild);
 
@@ -335,14 +161,11 @@
     document.getElementById('total-rooms').textContent = totalRooms;
     document.getElementById('live-rooms').textContent = liveRooms;
   });
+
 </script>
   <body>
     <!-- 导航栏 -->
-    <!-- <nav class="navbar">
-        <h5 class="navbar-brand">录播姬状态捏</h5>
-        <a class="navbar-url" href="https://www.bilibili.com/">测试一下导航栏连接样式</a>
-    </nav> -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="lcl_navbar navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">录播姬状态捏</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -379,14 +202,13 @@
       <div class="main-frame-data">
         <!-- 主内容区-详细数据-直播间标题 -->
         <h2 class="fs-1" id="liveRoomTitle"></h2>
+        <!-- 主内容区-详细数据-直播间ID -->
+
+        <div class="fs-2" id="roomIdLink"></div>
         <!-- 主内容区-详细数据-直播状态 -->
-        <div class="row mb-3">
-          <div class="main-frame-data-text" id="streaming"></div>
-        </div>
+        <div class="fs-2" id="streaming"> </div>
         <!-- 主内容区-详细数据-录制状态 -->
-        <div class="row mb-3">
-          <div class="col" id="recording"></div>
-        </div>
+        <div class="fs-2" id="recording"></div>
       </div>
     </div>
 
