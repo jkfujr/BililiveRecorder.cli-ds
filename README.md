@@ -46,3 +46,7 @@ $python run.py
 Rec-NIC 今天也是咕咕咕的一天 [722935608](https://jq.qq.com/?_wv=1027&k=KI1Ly3kG)
 
     (录播姬非官方闲聊群但是官方)
+
+## 四、相关
+> BililiveRecorder https://github.com/Bililive/BililiveRecorder
+> BililiveRecorder-WebUI https://github.com/BililiveRecorder/BililiveRecorder-WebUI
