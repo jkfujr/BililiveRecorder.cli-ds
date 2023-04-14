@@ -1,9 +1,13 @@
-from typing import Dict, List
+
+import ssl
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi import HTTPException
 from fastapi.staticfiles import StaticFiles
+from ssl import SSLContext
 from config.api import BililiveRec_API_LIST
+from typing import Dict, List
+
 
 import requests
 import uvicorn
@@ -113,11 +117,16 @@ def sort_data(data: List[Dict]) -> List[Dict]:
     return sorted(data, key=lambda x: x["用户名"])
 
 
+
 if __name__ == "__main__":
+    
     uvicorn.run(
         "run:app",
         host="0.0.0.0",
         port=9101,
+        # 不需要SSL就注释掉
+        ssl_keyfile="./ssl/wll.114514.plus.key",
+        ssl_certfile="./ssl/wll.114514.plus.crt",
         log_level="info",
         reload=True
     )

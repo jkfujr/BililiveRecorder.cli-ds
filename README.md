@@ -13,7 +13,7 @@
 - Python 3.10
 ```
 # 需要以下模块
-fastapi、uvicorn、Jinja2
+fastapi、uvicorn、Jinja2、SSLContext(支持SSL访问，可选)
 ```
 
 ## 二、使用
@@ -28,7 +28,8 @@ fastapi、uvicorn、Jinja2
 # 录播姬的api
 BililiveRec_API_LIST = [
     "http://录播姬A的IP:端口/api/room",
-    "http://录播姬B的IP:端口/api/room"
+    "http://录播姬B的IP:端口/api/roo
+    m"
 ]
 ```
 
