@@ -3,6 +3,7 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi import HTTPException
 from fastapi.staticfiles import StaticFiles
+from config.api import BililiveRecorder_API_LIST
 
 import requests
 import uvicorn
@@ -14,20 +15,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 # html文件
 templates = Jinja2Templates(directory="templates")
 
-# 存储API地址列表的变量
-API_LIST = [
-    "http://10.0.0.100:9001/api/room",
-    "http://10.0.0.100:9002/api/room",
-    "http://10.0.0.100:9003/api/room",
-    "http://10.0.0.100:9004/api/room",
-    "http://10.0.0.100:9005/api/room",
-    "http://10.0.0.100:9010/api/room",
-    "http://10.0.0.100:9080/api/room",
-    "http://10.0.0.100:9090/api/room",
-    "http://10.0.0.100:9091/api/room",
-    "http://10.0.0.100:9098/api/room",
-    "http://10.0.0.100:9099/api/room"
-]
 
 
 # 访问地址/(根路径)返回HTML页面
@@ -37,7 +24,7 @@ async def root(request: Request):
     all_data = []
 
     # 请求所有API，并将数据整合到 all_data 变量中
-    for api in API_LIST:
+    for api in BililiveRecorder_API_LIST:
         response = requests.get(api)
 
         if response.status_code == 200:
@@ -57,7 +44,7 @@ async def get_live_rooms():
     all_data = []
 
     # 请求所有API，并将数据整合到 all_data 变量中
-    for api in API_LIST:
+    for api in BililiveRecorder_API_LIST:
         response = requests.get(api)
 
         if response.status_code == 200:
@@ -78,7 +65,7 @@ async def get_live_room_data(object_id: str):
     all_data = []
 
     # 请求所有API，并将数据整合到 all_data 变量中
-    for api in API_LIST:
+    for api in BililiveRecorder_API_LIST:
         response = requests.get(api)
 
         if response.status_code == 200:
