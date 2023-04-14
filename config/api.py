@@ -1,4 +1,6 @@
-# 该文件是存储api用的
+# 该文件是api用
+
+#录播姬的api
 BililiveRecorder_API_LIST = [
     "http://10.0.0.100:9001/api/room",
     "http://10.0.0.100:9002/api/room",
@@ -11,4 +13,9 @@ BililiveRecorder_API_LIST = [
     "http://10.0.0.100:9091/api/room",
     "http://10.0.0.100:9098/api/room",
     "http://10.0.0.100:9099/api/room"
+]
+
+# Blrec的API()
+Blrec_API_LIST = [
+    ""
 ]
