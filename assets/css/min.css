@@ -29,7 +29,7 @@ body {
   right: 0;
   width: 85.5%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.6);
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1),
     inset 5px 5px 5px rgba(0, 0, 0, 0.1);
   /* 不允许任何溢出的内容展现在元素之外 */
@@ -47,6 +47,7 @@ body {
   width: 14.5%;
   max-width: 14.5%;
   padding: 0;
+  
   background-color: rgba(255, 255, 255, 0.8);
   border-right: 0.5008px solid rgba(51, 54, 57, 0.5);
   /* 层级3 */

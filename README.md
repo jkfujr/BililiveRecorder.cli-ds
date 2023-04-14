@@ -7,6 +7,11 @@
 ## 一、要求
 
 - Python 3.10
+    # python需要安装以下模块
+    fastapi
+    uvicorn
+    Jinja2
+    
 
 ## 二、使用
 
@@ -24,7 +29,7 @@
 
 ### 3. 运行 `run.py` 文件
 
-    $ python run.py
+    $python run.py
 
 ### 4. 访问 [http://127.0.0.1:9101](http://127.0.0.1:9101) (默认的情况下)
 
