@@ -11,13 +11,10 @@
 ## 一、要求
 
 - Python 3.10
+```
     #python需要安装以下模块
-    fastapi
-
-    uvicorn
-    
-    Jinja2
-
+    fastapi、uvicorn、Jinja2
+```
 
 ## 二、使用
 
