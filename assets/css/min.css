@@ -1,0 +1,184 @@
+/* 整体框架 */
+body {
+  /* 随机二刺螈图 */
+  background-image: url("https://www.loliapi.com/acg/pc/");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center top;
+  font-family: "Microsoft YaHei";
+  /* 在暗色模式下设置 body 样式 */
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+/* 在暗色模式下设置 body 样式 */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-bg-dark);
+  }
+}
+
+/* 主内容区-框架 */
+.main-frame {
+  position: fixed;
+  top: 6.5%;
+  bottom: 0;
+  right: 0;
+  width: 85.5%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0rem 0rem 0.625rem rgba(0, 0, 0, 0.1),
+    inset 0.3125rem 0.3125rem 0.3125rem rgba(0, 0, 0, 0.1);
+  /* 不允许任何溢出的内容展现在元素之外 */
+  overflow-y: hidden;
+  /* 层级1 */
+  z-index: 1;
+}
+
+/* 侧边栏-框架，并作为容器包含"搜索框"、"数据面板"、"侧边栏" */
+.sidebar-frame {
+  position: fixed;
+  top: 6.5%;
+  bottom: 0;
+  left: 0;
+  width: 14.5%;
+  max-width: 14.5%;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-right: 0.0313rem solid rgba(51, 54, 57, 0.5);
+  /* 层级3 */
+  z-index: 3;
+}
+
+/* 侧边栏-数据面板 */
+#sidebar-datapanel {
+  position: fixed;
+  top: 7.5rem;
+  left: 0;
+  width: 14.5%;
+  display: block;
+  padding: 0.375rem 0.75rem;
+  color: #212529;
+  border-radius: 0.3125rem;
+  font-size: 1.5625rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  background-clip: padding-box;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.25);
+  /* 层级2 */
+  z-index: 2;
+}
+
+/* 侧边栏 */
+.sidebar {
+  position: fixed;
+  top: 13.5625rem;
+  left: 0;
+  width: 14.45%;
+  display: block;
+  height: calc(100%);
+  /* 如果内容超出高度，显示滚动条 */
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(0.5rem);
+  border-top: 0.0625rem solid rgba(0, 0, 0, 0.5);
+  /* 层级2 */
+  z-index: 2;
+}
+
+/* 侧边栏-侧边栏链接添加过渡效果 */
+/* 有些许抖动，在意就自己注释掉 */
+.sidebar a {
+  transition: all 0.3s ease-in-out;
+}
+
+/* 侧边栏-鼠标悬浮于侧边栏链接上时，将链接文字变成白色，并设定背景颜色与透明度 */
+.sidebar a:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(108, 117, 125);
+}
+
+/* 侧边栏-数据-tag */
+sidebar-data-tag {
+  float: right;
+  font-size: 0.625rem;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  padding: 0 0.5rem;
+  margin-left: 0.5rem;
+  border-radius: 0.625rem;
+  font-weight: 700;
+}
+
+/* 侧边栏-数据-tag-直播中 */
+.sidebar-data-tag-streaming {
+  background-color: rgba(255, 0, 0, 0.8);
+  color: #fff;
+}
+
+/* 侧边栏-数据-tag-摸鱼中 */
+.sidebar-data-tag-not-streaming {
+  background-color: rgba(0, 128, 0, 0.8);
+  color: #fff;
+}
+
+/* 侧边栏-滚动条 */
+.sidebar::-webkit-scrollbar {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+/* 侧边栏-滚动条-轨道 */
+.sidebar::-webkit-scrollbar-track {
+  background-color: rgb(245, 245, 245);
+}
+
+/* 侧边栏-滚动条-滑块 */
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0.3125rem;
+}
+
+/* 侧边栏-滚动条-滑块-拖动状态下动画 */
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* 导航栏 */
+.lcl_navbar {
+  position: fixed;
+  /* 固定导航栏在页面顶部 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.875rem;
+  padding: 0;
+  /* 层级4 */
+  z-index: 4;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(0.5rem);
+  border-bottom: 0.0313rem solid rgba(51, 54, 57, 0.5);
+}
+
+.test {
+  font-family: var(--bs-body-font-family);
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: inherit;
+  position: relative;
+  display: block;
+  padding: var(--bs-list-group-item-padding-y)
+    var(--bs-list-group-item-padding-x);
+  color: var(--bs-list-group-color);
+  text-decoration: none;
+  background-color: var(--bs-list-group-bg);
+  border: var(--bs-list-group-border-width) solid
+    var(--bs-list-group-border-color);
+  transition: all 0.3s ease-in-out;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}

@@ -1,7 +1,7 @@
 # 该文件是api用
 
-#录播姬的api
-BililiveRecorder_API_LIST = [
+# 录播姬的api
+BililiveRec_API_LIST = [
     "http://10.0.0.100:9001/api/room",
     "http://10.0.0.100:9002/api/room",
     "http://10.0.0.100:9003/api/room",
@@ -15,7 +15,7 @@ BililiveRecorder_API_LIST = [
     "http://10.0.0.100:9099/api/room"
 ]
 
-# Blrec的API()
+# Blrec的API(饼)
 Blrec_API_LIST = [
     ""
 ]

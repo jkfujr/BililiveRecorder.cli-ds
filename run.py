@@ -3,7 +3,7 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi import HTTPException
 from fastapi.staticfiles import StaticFiles
-from config.api import BililiveRecorder_API_LIST
+from config.api import BililiveRec_API_LIST
 
 import requests
 import uvicorn
@@ -11,10 +11,9 @@ import uvicorn
 app = FastAPI()
 
 # 静态文件
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/assets", StaticFiles(directory="assets"), name="assets")
 # html文件
-templates = Jinja2Templates(directory="templates")
-
+webui = Jinja2Templates(directory="webui")
 
 
 # 访问地址/(根路径)返回HTML页面
@@ -24,7 +23,7 @@ async def root(request: Request):
     all_data = []
 
     # 请求所有API，并将数据整合到 all_data 变量中
-    for api in BililiveRecorder_API_LIST:
+    for api in BililiveRec_API_LIST:
         response = requests.get(api)
 
         if response.status_code == 200:
@@ -34,17 +33,17 @@ async def root(request: Request):
     formatted_data = format_data(all_data)
     sorted_data = sort_data(formatted_data)
 
-    return templates.TemplateResponse("index.html", {"request": request, "data": sorted_data})
+    return webui.TemplateResponse("index.html", {"request": request, "data": sorted_data})
 
 
 # 返回所有直播间的数据
-@app.get("/api")
-async def get_live_rooms():
+@app.get("/bililiveRec/api")
+async def get_bililiveRec_room_all():
     # 存储解析后的所有数据
     all_data = []
 
     # 请求所有API，并将数据整合到 all_data 变量中
-    for api in BililiveRecorder_API_LIST:
+    for api in BililiveRec_API_LIST:
         response = requests.get(api)
 
         if response.status_code == 200:
@@ -58,14 +57,14 @@ async def get_live_rooms():
 
 
 # 返回指定直播间的数据
-@app.get("/api/{object_id}")
-async def get_live_room_data(object_id: str):
+@app.get("/bililiveRec/api/{object_id}")
+async def get_bililiveRec_room(object_id: str):
 
     # 存储解析后的所有数据
     all_data = []
 
     # 请求所有API，并将数据整合到 all_data 变量中
-    for api in BililiveRecorder_API_LIST:
+    for api in BililiveRec_API_LIST:
         response = requests.get(api)
 
         if response.status_code == 200:

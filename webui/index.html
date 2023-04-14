@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <title>录播姬状态捏</title>
+    <!-- lcl css -->
+    <link rel="stylesheet" href="../assets/css/min.css" />
+    <!--bootstrap css cdn-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+      onerror="this.onerror=null;this.rel='stylesheet';this.href='../assets/dist/css/bootstrap.min.css'"
+    />
+    <!-- bootstrap cdn文件加载失败就加载bootstrap本地文件-->
+    <link
+      rel="stylesheet"
+      href="../assets/css/bootstrap.min.css"
+      crossorigin="anonymous"
+    />
+    <!-- fontawesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css"
+      crossorigin="anonymous"
+    />
+    <!-- bootstrap js cdn -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    /* 侧边栏-搜索框 */
+    .sidebar-search {
+      position: fixed;
+      top: 4.5rem;
+      left: 0;
+      width: 14.5%;
+      display: block;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #ff0000;
+      background-color: rgba(255, 255, 255, 0.5);
+      background-clip: padding-box;
+      appearance: none;
+      border: 0.0625rem solid rgba(0, 0, 0, 0.25);
+      /* 层级2 */
+      z-index: 2;
+    }
+  </style>
+
+  <script>
+    /* 导根据录播姬ID获取详细数据 */
+    function getLiveRoomData(id) {
+      // 发送请求获取单独直播间的数据
+      fetch(`/bililiveRec/api/${id}`)
+        .then((response) => response.json())
+        // 处理数据，在该函数内渲染详细数据
+        .then((data) => {
+          document.getElementById("liveRoomTitle").innerText =
+            data["直播间标题"];
+          document.getElementById("streaming").innerText =
+            "直播状态:" + (data["直播状态"] ? "直播中" : "摸鱼中");
+          document.getElementById("recording").innerText =
+            "录制状态:" + (data["录制状态"] ? "录制中" : "监控中");
+        });
+    }
+
+    /* 切换侧边栏的选中状态 */
+    function changeActiveItem(item) {
+      const activeItem = document.querySelector(".sidebar .active");
+      if (activeItem) {
+        activeItem.classList.remove("active");
+      }
+      item.classList.add("active");
+    }
+
+    /* 等待页面加载完成执行 */
+    document.addEventListener("DOMContentLoaded", () => {
+      // 获取数据
+      const data = JSON.parse("{{ data | tojson }}");
+
+      // 渲染侧边栏
+      const sidebar = document.querySelector(".sidebar");
+
+      // 按照用户名排序
+      const sortedData = data.sort((a, b) =>
+        a["用户名"].localeCompare(b["用户名"])
+      );
+
+      // 声明一个用于存储有 '录制中' 或 '摸鱼中' TAG的直播房间的数组
+      let listedData = [];
+
+      /* 在原数据的上添加对应的TAG*/
+      for (let idx = 0; idx < sortedData.length; idx++) {
+        let currentData = sortedData[idx];
+        currentData.isStreaming = currentData["直播状态"] === true;
+
+        let tag = document.createElement("sidebar-data-tag");
+        let icon = document.createElement("i");
+
+        tag.classList.add("tag");
+        icon.classList.add("fas");
+        icon.classList.add("fa-video");
+        icon.classList.add("fa-xs");
+
+        if (currentData.isStreaming) {
+          tag.classList.add("sidebar-data-tag-streaming");
+          icon.classList.add("fa-video");
+          tag.appendChild(icon);
+          tag.appendChild(document.createTextNode(""));
+        } else {
+          tag.classList.add("sidebar-data-tag-not-streaming");
+          icon.classList.add("fa-times");
+          tag.appendChild(icon);
+          tag.appendChild(document.createTextNode(""));
+        }
+
+        // 项目标题与TAG之间增加一个'空格'作为分隔符
+        currentData["用户名"] = currentData["用户名"] + " ";
+        // 将TAG增加到项目标题中 */
+        currentData.taggedUsername = currentData["用户名"] + tag.outerHTML;
+        // 将更新后的直播房间信息存放到已标记数组中 */
+        listedData.push(currentData);
+      }
+
+      /* 对正在直播中的V，优先进行排列（按A-Z用户名排序） */
+      const sortedListedData = listedData
+        .filter((item) => item.isStreaming)
+        .sort((a, b) => {
+          return a["用户名"].localeCompare(b["用户名"], ["en", "ja", "zh"], {
+            sensitivity: "base",
+          });
+        })
+        .concat(
+          listedData
+            .filter((item) => !item.isStreaming)
+            .sort((a, b) => {
+              return a["用户名"].localeCompare(
+                b["用户名"],
+                ["en", "ja", "zh"],
+                { sensitivity: "base" }
+              );
+            })
+        );
+      /* 遍历排序后的列表渲染侧边栏 */
+      for (let liveRoom of sortedListedData) {
+        const item = document.createElement("a");
+        item.classList.add("list-group-item", "list-group-item-action");
+        // 从更新后的数据中渲染项目标题（含TAG）
+        item.innerHTML = liveRoom.taggedUsername;
+        item.addEventListener("click", () => {
+          changeActiveItem(item);
+          getLiveRoomData(liveRoom["录播姬ID"]);
+        });
+        sidebar.appendChild(item);
+      }
+
+      // 创建搜索框元素
+      const sidebarFrame = document.getElementById("sidebar-frame");
+      const searchBox = document.createElement("input");
+      searchBox.type = "search";
+      searchBox.placeholder = "搜索用户名";
+      searchBox.classList.add("sidebar-search", "form-control", "mb-3");
+      searchBox.autocomplete = "off";
+      sidebarFrame.insertBefore(searchBox, sidebarFrame.firstChild);
+
+      /* 数据面板 */
+      // 计算所有直播间数量和正在直播中的直播间数量
+      const totalRooms = data.length;
+      const liveRooms = data.filter((room) => room["直播状态"]).length;
+      // 计算用户名的数量
+      const totalUsernames = data.reduce((total, room) => {
+        return total + room["用户名"].split(",").length;
+      }, 0);
+      // 将数据渲染到数据面板中
+      document.getElementById("total-rooms").textContent = totalRooms;
+      document.getElementById("live-rooms").textContent = liveRooms;
+    });
+  </script>
+
+  <body>
+    <!-- 导航栏 -->
+    <nav class="lcl_navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">录播姬状态捏</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="#">测测</a>
+            <a class="nav-link" href="#">你</a>
+            <a class="nav-link" href="#">的</a>
+            <a class="nav-link" href="#">测试</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- 侧边栏-框架 -->
+    <div class="sidebar-frame" id="sidebar-frame">
+      <!-- 数据面板 -->
+      <div id="sidebar-datapanel">
+        <div>
+          <i class="fas fa-eye"></i>监控中：<span id="total-rooms"></span>
+        </div>
+        <div>
+          <i class="fas fa-play-circle"></i>直播中：<span
+            id="live-rooms"
+          ></span>
+        </div>
+      </div>
+      <!-- 侧边栏 -->
+      <div class="sidebar"></div>
+    </div>
+
+    <!-- 主内容区-框架 -->
+    <div class="main-frame">
+      <!-- 主内容区-详细数据 -->
+      <div class="main-frame-data">
+        <!-- 主内容区-详细数据-直播间标题 -->
+        <h2 class="fs-2" id="liveRoomTitle"></h2>
+        <!-- 主内容区-详细数据-直播状态 -->
+        <div class="row mb-3">
+          <div class="fs-3" id="streaming"></div>
+        </div>
+        <!-- 主内容区-详细数据-录制状态 -->
+        <div class="row mb-3">
+          <div class="fs-3" id="recording"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 引用jQuery，放在外面保证能够引用 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- JS，放在最后进行事件绑定 -->
+    <script>
+      $(function () {
+        const sidebarframeItems = $(".sidebar-frame a.list-group-item");
+        const searchBox = $('.sidebar-frame input[type="search"]');
+        searchBox.on("input", () => {
+          const keyword = searchBox.val().trim();
+          if (!keyword) {
+            sidebarframeItems.show();
+          } else {
+            sidebarframeItems
+              .hide()
+              .filter((_, item) => {
+                let allLowerCaseText = $(item).text().trim().toLowerCase();
+                // 分别将中英文的全角和半角字符进行替换
+                allLowerCaseText = allLowerCaseText.replace(
+                  /[^\x00-\xff]/g,
+                  (char) => {
+                    let charCode = char.charCodeAt(0);
+                    if (charCode === 12288) {
+                      return String.fromCharCode(32);
+                    } else if (charCode > 65280 && charCode < 65375) {
+                      return String.fromCharCode(charCode - 65248);
+                    }
+                    return char;
+                  }
+                );
+                let allLowerCaseKeyword = keyword.toLocaleLowerCase();
+                allLowerCaseKeyword = allLowerCaseKeyword.replace(
+                  /[^\x00-\xff]/g,
+                  (char) => {
+                    let charCode = char.charCodeAt(0);
+                    if (charCode === 12288) {
+                      return String.fromCharCode(32);
+                    } else if (charCode > 65280 && charCode < 65375) {
+                      return String.fromCharCode(charCode - 65248);
+                    }
+                    return char;
+                  }
+                );
+                return allLowerCaseText.indexOf(allLowerCaseKeyword) > -1;
+              })
+              .show();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
