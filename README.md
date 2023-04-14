@@ -4,6 +4,8 @@
 
 一个用 python 实现的"多"录播姬命令行简单的信息展示(
 
+演示 http://wll.114514.plus:30116/
+
 ## 一、要求
 
 - Python 3.10
@@ -11,7 +13,7 @@
     fastapi
     uvicorn
     Jinja2
-    
+
 
 ## 二、使用
 
