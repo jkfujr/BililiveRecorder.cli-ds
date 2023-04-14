@@ -12,10 +12,15 @@
 
 ### 1. 下载
 
-### 2. 编辑 `run.py` 文件
+### 2. 添加 录播姬 API
 
-- 修改为你自己的录播姬 API
-- 修改监听 IP/端口 (可选)
+    # 编辑 `./config/api.py` 文件
+
+    # 录播姬的api
+    BililiveRec_API_LIST = [
+        "http://录播姬A的IP:端口/api/room",
+        "http://录播姬B的IP:端口/api/room"
+    ]
 
 ### 3. 运行 `run.py` 文件
 
