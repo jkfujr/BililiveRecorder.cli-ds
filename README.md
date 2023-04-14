@@ -12,8 +12,8 @@
 
 - Python 3.10
 ```
-    #python需要安装以下模块
-    fastapi、uvicorn、Jinja2
+#需要以下模块
+fastapi、uvicorn、Jinja2
 ```
 
 ## 二、使用
@@ -22,17 +22,20 @@
 
 ### 2. 添加 录播姬 API
 
-    # 编辑 `./config/api.py` 文件
+```
+# 编辑 `./config/api.py` 文件
 
-    # 录播姬的api
-    BililiveRec_API_LIST = [
-        "http://录播姬A的IP:端口/api/room",
-        "http://录播姬B的IP:端口/api/room"
-    ]
+# 录播姬的api
+BililiveRec_API_LIST = [
+    "http://录播姬A的IP:端口/api/room",
+    "http://录播姬B的IP:端口/api/room"
+]
+```
 
 ### 3. 运行 `run.py` 文件
-
-    $python run.py
+```
+$python run.py
+```
 
 ### 4. 访问 [http://127.0.0.1:9101](http://127.0.0.1:9101)
 (默认的情况下)
