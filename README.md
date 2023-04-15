@@ -52,13 +52,21 @@ $ python main.py
 
 (默认的情况下)
 
-## 三、联系
+## 三、更新计划(饼)
+
+```
+缓存机制
+日志
+数据库
+```
+
+## 四、联系
 
 Rec-NIC 今天也是咕咕咕的一天 [722935608](https://jq.qq.com/?_wv=1027&k=KI1Ly3kG)
 
     (录播姬非官方闲聊群但是官方)
 
-## 四、相关
+## 五、相关
 
 > BililiveRecorder https://github.com/Bililive/BililiveRecorder
 > BililiveRecorder-WebUI https://github.com/BililiveRecorder/BililiveRecorder-WebUI
