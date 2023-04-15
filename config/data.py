@@ -40,15 +40,15 @@ def format_data(data: List[Dict]) -> List[Dict]:
     return formatted_data
 
 
-def format_data_single(d: Dict) -> Dict:
+def format_data_single(data: Dict) -> Dict:
 
     formatted_data = {  # 存储格式化后的单个数据字典
-        "录播姬ID": d.get("objectId"),
-        "直播间ID": d.get("roomId"),
-        "用户名": d.get("name"),
-        "直播间标题": d.get("title"),
-        "直播状态": d.get("streaming"),
-        "录制状态": d.get("recording")
+        "录播姬ID": data.get("objectId"),
+        "直播间ID": data.get("roomId"),
+        "用户名": data.get("name"),
+        "直播间标题": data.get("title"),
+        "直播状态": data.get("streaming"),
+        "录制状态": data.get("recording")
     }
     return formatted_data
 
