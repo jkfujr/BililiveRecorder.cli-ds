@@ -1,8 +1,5 @@
-from typing import Dict, List
-
 import requests
-
-
+from typing import Dict, List
 # 引用api文件
 from config.api import BililiveRec_API_LIST
 

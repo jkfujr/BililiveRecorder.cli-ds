@@ -11,6 +11,7 @@
 ## 一、要求
 
 - Python 3.10
+
 ```
 # 需要以下模块
 fastapi、uvicorn、Jinja2、SSLContext(支持SSL访问，可选)
@@ -20,7 +21,7 @@ fastapi、uvicorn、Jinja2、SSLContext(支持SSL访问，可选)
 
 ### 1. 下载
 
-### 2. 添加 录播姬 API
+### 2. 添加 API
 
 ```
 # 编辑 `./config/api.py` 文件
@@ -33,9 +34,18 @@ BililiveRec_API_LIST = [
 ]
 ```
 
-### 3. 运行 `run.py` 文件
+### 3. 运行
+
+#### Windows
+
 ```
-$python run.py
+双击 run.bat
+```
+
+#### Linux
+
+```
+$ python main.py
 ```
 
 ### 4. 访问 [http://127.0.0.1:9101](http://127.0.0.1:9101)
@@ -49,5 +59,6 @@ Rec-NIC 今天也是咕咕咕的一天 [722935608](https://jq.qq.com/?_wv=1027&k
     (录播姬非官方闲聊群但是官方)
 
 ## 四、相关
+
 > BililiveRecorder https://github.com/Bililive/BililiveRecorder
 > BililiveRecorder-WebUI https://github.com/BililiveRecorder/BililiveRecorder-WebUI
