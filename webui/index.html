@@ -7,15 +7,15 @@
       minimum-scale=1.0" />
     <title>录播姬状态捏</title>
     <!-- lcl css -->
-    <link rel="stylesheet" href="../assets/css/min.css" />
+    <link rel="stylesheet" href="./assets/css/min.css" />
     <!--bootstrap css-->
-    <link rel="stylesheet" href="../assets/css/bootstrap/bootstrap.min.css"
+    <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.min.css"
       crossorigin="anonymous">
     <!--fontawesome js-->
-    <script src="../assets/js/fontawesome/min.js"
+    <script src="./assets/js/fontawesome/min.js"
       crossorigin="anonymous"></script>
     <!-- bootstrap js cdn -->
-    <script src="../assets/js/bootstrap/bootstrap.bundle.js"
+    <script src="./assets/js/bootstrap/bootstrap.bundle.js"
       crossorigin="anonymous"></script>
   </head>
 
@@ -154,7 +154,12 @@
     <!-- 导航栏 -->
     <nav class="lcl_navbar navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">录播姬状态捏</a>
+        <!-- logo -->
+        <a class="navbar-brand" href="#">
+          <img src="./assets/images/logo.svg" alt="Logo"
+            width="30" height="30" class="d-inline-block align-text-top">
+          录播姬状态捏
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup" aria-expanded="false"
@@ -190,7 +195,6 @@
         <!-- 主内容区-详细数据-直播间标题 -->
         <h2 class="fs-1" id="liveRoomTitle"></h2>
         <!-- 主内容区-详细数据-直播间ID -->
-
         <div class="fs-2" id="roomIdLink"></div>
         <!-- 主内容区-详细数据-直播状态 -->
         <div class="fs-2" id="streaming"> </div>
@@ -200,7 +204,7 @@
     </div>
 
     <!-- 引用jQuery，放在外面保证能够引用 -->
-    <script src="../assets/js/jquery/jquery-3.6.4.min.js"></script>
+    <script src="./assets/js/jquery/jquery-3.6.4.min.js"></script>
     <!-- JS，放在最后进行事件绑定 -->
     <script>
     $(function () {
