@@ -30,14 +30,11 @@
         document.getElementById('直播间标题').innerText = data['直播间标题'];
         let roomId = data['直播间ID'];
         let bililive = 'https://live.bilibili.com/' + roomId;
-        document.getElementById('直播间ID链接').innerHTML = '直播间ID:  <a href="' + bililive + '">' + roomId + '</a>';
-        document.getElementById('自动录制').innerHTML = '自动录制: ' + (data['自动录制'] ? '开启' : '关闭');
-        document.getElementById('直播状态').innerText = '直播状态: ' + (data['直播状态'] ? '直播中' : '摸鱼中');
-        document.getElementById('录制状态').innerText = '录制状态: ' + (data['录制状态'] ? '录制中' : '监控中');
-        document.getElementById('录制开始时间').innerText = '录制开始时间: ' + data['录制开始时间'];
-        document.getElementById('录制持续时间').innerText = '录制持续时间: ' + data['录制持续时间'];
-        document.getElementById('录制结束时间').innerText = '录制结束时间: ' + data['录制结束时间'];
-        document.getElementById('直播流地址').innerText = '直播流地址: ' + data['直播流地址'];
+        document.getElementById('直播间ID链接').innerHTML = 'ID <a href="' + bililive + '">' + roomId + '</a>';
+        document.getElementById('自动录制').innerText = data['自动录制'] ? '监控中' : '';
+        document.getElementById('直播状态').innerText = '直播状态 ' + (data['直播状态'] ? '直播中' : '摸鱼中');
+        document.getElementById('录制状态').innerText = '录制状态 ' + (data['录制状态'] ? '录制中' : '监控中');
+        document.getElementById('直播服务器域名').innerText = '直播服务器域名 ' + data['直播服务器域名'];
       });
   }
 
@@ -193,74 +190,17 @@
     <div class="main-frame">
       <!-- 主内容区-详细数据 -->
       <div class="main-frame-data">
-        <!-- 主内容区-详细数据-直播间标题 -->
         <h2 class="fs-1" id="直播间标题"></h2>
-        <!-- 主内容区-详细数据-直播间ID链接 -->
         <div class="fs-3" id="直播间ID链接"></div>
-        <!-- 主内容区-详细数据-自动录制 -->
         <div class="fs-3" id="自动录制"></div>
-        <!-- 主内容区-详细数据-直播状态 -->
         <div class="fs-3" id="直播状态"> </div>
-        <!-- 主内容区-详细数据-录制状态 -->
         <div class="fs-3" id="录制状态"></div>
-        <div class="fs-3" id="录制开始时间"></div>
-        <div class="fs-3" id="录制持续时间"></div>
-        <div class="fs-3" id="录制结束时间"></div>
-        <div class="fs-3" id="直播流地址"></div>
+        <div class="fs-3" id="直播服务器域名"></div>
       </div>
     </div>
   </body>
   <!-- 引用jQuery，放在外面保证能够引用 -->
   <script src="./assets/js/jquery/jquery-3.6.4.min.js"></script>
-  <!-- JS，放在最后进行事件绑定 -->
-  <script>
-    $(function () {
-      // 获取所有侧边栏列表项元素
-      const sidebarframeItems = $('.sidebar-frame a.list-group-item');
-      // 获取侧边栏搜索框元素
-      const searchBox = $('.sidebar-frame input[type="search"]');
-      // 给搜索框元素添加 input 事件监听器
-      searchBox.on('input', () => {
-          // 获取搜索框中的关键字并去除两侧空格
-          const keyword = searchBox.val().trim();
-          // 判断搜索框是否为空
-          if (!keyword) {
-              // 如果搜索框为空则将所有列表项元素都显示出来
-              sidebarframeItems.show();
-          } else {
-              // 否则隐藏所有列表项元素，并根据关键字过滤符合条件的元素并显示出来
-              sidebarframeItems.hide().filter((_, item) => {
-                  // 获取列表项文本，并将该文本中的中英文全角和半角字符替换为小写，以方便后续匹配
-                  let allLowerCaseText = $(item).text().trim().toLowerCase();
-                  allLowerCaseText = allLowerCaseText.replace(/[^\x00-\xff]/g, (char) => {
-                      let charCode = char.charCodeAt(0);
-                      if (charCode === 12288) {
-                          return String.fromCharCode(32);
-                      } else if (charCode > 65280 && charCode < 65375) {
-                          return String.fromCharCode(charCode - 65248);
-                      }
-                      return char;
-                  });
-                  // 获取关键字，并将中英文全角和半角字符替换为小写，以方便后续匹配
-                  let allLowerCaseKeyword = keyword.toLocaleLowerCase();
-                  allLowerCaseKeyword = allLowerCaseKeyword.replace(/[^\x00-\xff]/g, (char) => {
-                      let charCode = char.charCodeAt(0);
-                      if (charCode === 12288) {
-                          return String.fromCharCode(32);
-                      } else if (charCode > 65280 && charCode < 65375) {
-                          return String.fromCharCode(charCode - 65248);
-                      }
-                      return char;
-                  });
-                  // 匹配列表项文本和关键字，如果找到符合条件的则返回 true，否则返回 false
-                  if (allLowerCaseText.includes(allLowerCaseKeyword)) {
-                      return true;
-                  } else {
-                      return false;
-                  }
-              }).show();
-          }
-      });
-  });
-</script>
+  <!-- 搜索框，放在最后进行事件绑定 -->
+  <script src="./assets/js/sidebar-search.js"></script>
 </html>

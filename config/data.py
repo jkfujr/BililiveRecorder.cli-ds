@@ -55,10 +55,7 @@ def format_data_single(data: Dict) -> Dict:
         "直播间标题": data.get("title"),
         "直播状态": data.get("streaming"),
         "录制状态": data.get("recording"),
-        "直播流地址": data.get("streamHost"),
-        "录制开始时间": data.get("startTime"),
-        "录制结束时间": data.get("endTime"),
-        "录制持续时间": data.get("duration")
+        "直播服务器域名": data.get("streamHost"),
 
 
     }
