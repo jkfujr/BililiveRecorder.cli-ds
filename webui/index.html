@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0,
       minimum-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico" />
     <title>录播姬状态捏</title>
     <!-- lcl css -->
     <link rel="stylesheet" href="./assets/css/min.css" />
@@ -26,12 +27,17 @@
       .then(response => response.json())
       // 处理数据，在该函数内渲染详细数据
       .then(data => {
-        document.getElementById('liveRoomTitle').innerText = data['直播间标题'];
+        document.getElementById('直播间标题').innerText = data['直播间标题'];
         let roomId = data['直播间ID'];
         let bililive = 'https://live.bilibili.com/' + roomId;
-        document.getElementById('roomIdLink').innerHTML = '直播间ID:  <a href="' + bililive + '">' + roomId + '</a>';
-        document.getElementById('streaming').innerText = '直播状态: ' + (data['直播状态'] ? '直播中' : '摸鱼中');
-        document.getElementById('recording').innerText = '录制状态: ' + (data['录制状态'] ? '录制中' : '监控中');
+        document.getElementById('直播间ID链接').innerHTML = '直播间ID:  <a href="' + bililive + '">' + roomId + '</a>';
+        document.getElementById('自动录制').innerHTML = '自动录制: ' + (data['自动录制'] ? '开启' : '关闭');
+        document.getElementById('直播状态').innerText = '直播状态: ' + (data['直播状态'] ? '直播中' : '摸鱼中');
+        document.getElementById('录制状态').innerText = '录制状态: ' + (data['录制状态'] ? '录制中' : '监控中');
+        document.getElementById('录制开始时间').innerText = '录制开始时间: ' + data['录制开始时间'];
+        document.getElementById('录制持续时间').innerText = '录制持续时间: ' + data['录制持续时间'];
+        document.getElementById('录制结束时间').innerText = '录制结束时间: ' + data['录制结束时间'];
+        document.getElementById('直播流地址').innerText = '直播流地址: ' + data['直播流地址'];
       });
   }
 
@@ -77,9 +83,9 @@
         tag.appendChild(icon);
         tag.appendChild(document.createTextNode(''));
       } else {
-        // 侧边栏-数据-tag-直播中-样式添加
+        // 侧边栏-数据-tag-摸鱼中-样式添加
         tag.classList.add('sidebar-data-tag-not-streaming');
-        // 侧边栏-数据-tag-直播中-图标添加
+        // 侧边栏-数据-tag-摸鱼中-图标添加
         icon.classList.add('fa-solid', 'fa-video');
         tag.appendChild(icon);
         tag.appendChild(document.createTextNode(''));
@@ -167,6 +173,7 @@
             <a class="nav-link" href="#">测</a>
             <a class="nav-link" href="#">你</a>
             <a class="nav-link" href="#">的</a>
+            <a class="nav-link" href="#">现在正在设计并实现数据库存储录播姬数据</a>
           </div>
         </div>
       </div>
@@ -187,13 +194,19 @@
       <!-- 主内容区-详细数据 -->
       <div class="main-frame-data">
         <!-- 主内容区-详细数据-直播间标题 -->
-        <h2 class="fs-1" id="liveRoomTitle"></h2>
-        <!-- 主内容区-详细数据-直播间ID -->
-        <div class="fs-2" id="roomIdLink"></div>
+        <h2 class="fs-1" id="直播间标题"></h2>
+        <!-- 主内容区-详细数据-直播间ID链接 -->
+        <div class="fs-3" id="直播间ID链接"></div>
+        <!-- 主内容区-详细数据-自动录制 -->
+        <div class="fs-3" id="自动录制"></div>
         <!-- 主内容区-详细数据-直播状态 -->
-        <div class="fs-2" id="streaming"> </div>
+        <div class="fs-3" id="直播状态"> </div>
         <!-- 主内容区-详细数据-录制状态 -->
-        <div class="fs-2" id="recording"></div>
+        <div class="fs-3" id="录制状态"></div>
+        <div class="fs-3" id="录制开始时间"></div>
+        <div class="fs-3" id="录制持续时间"></div>
+        <div class="fs-3" id="录制结束时间"></div>
+        <div class="fs-3" id="直播流地址"></div>
       </div>
     </div>
   </body>

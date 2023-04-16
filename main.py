@@ -13,7 +13,11 @@ from config.data import get_data
 from config.data import get_all_data
 from config.data import format_data_single
 
-app = FastAPI()
+app = FastAPI(
+    docs_url=None,
+    redoc_favicon_url="/webui/assets/logo.ico",
+)
+
 
 # 静态文件
 app.mount("/assets", StaticFiles(directory="./webui/assets"), name="assets")

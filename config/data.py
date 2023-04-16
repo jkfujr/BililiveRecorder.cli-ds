@@ -1,6 +1,7 @@
 import requests
 from typing import Dict, List
 # 引用api文件
+# from api import BililiveRec_API_LIST
 from config.api import BililiveRec_API_LIST
 
 
@@ -40,18 +41,31 @@ def format_data(data: List[Dict]) -> List[Dict]:
     return formatted_data
 
 
+
+
+
 def format_data_single(data: Dict) -> Dict:
 
     formatted_data = {  # 存储格式化后的单个数据字典
         "录播姬ID": data.get("objectId"),
         "直播间ID": data.get("roomId"),
+        # 是否开启自动录制
+        "自动录制": data.get("autoRecord"),
         "用户名": data.get("name"),
         "直播间标题": data.get("title"),
         "直播状态": data.get("streaming"),
-        "录制状态": data.get("recording")
+        "录制状态": data.get("recording"),
+        "直播流地址": data.get("streamHost"),
+        "录制开始时间": data.get("startTime"),
+        "录制结束时间": data.get("endTime"),
+        "录制持续时间": data.get("duration")
+
+
     }
     return formatted_data
 
 
 def sort_data(data: List[Dict]) -> List[Dict]:
     return sorted(data, key=lambda x: x["用户名"])
+
+
