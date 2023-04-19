@@ -1,3 +1,4 @@
+import datetime
 import requests
 from typing import Dict, List
 # 引用api文件
@@ -46,19 +47,32 @@ def format_data(data: List[Dict]) -> List[Dict]:
 
 def format_data_single(data: Dict) -> Dict:
 
-    formatted_data = {  # 存储格式化后的单个数据字典
+    # 时间格式化
+    sessionDuration_duration_ms = round(float(data.get("recordingStats")["sessionDuration"]))
+    sessionMaxTimestamp_duration_ms = round(float(data.get("recordingStats")["sessionMaxTimestamp"]))
+    
+
+    sessionDuration = datetime.timedelta(milliseconds=sessionDuration_duration_ms)
+    sessionMaxTimestamp = datetime.timedelta(milliseconds=sessionMaxTimestamp_duration_ms)
+
+    formatted_data = {
         "录播姬ID": data.get("objectId"),
         "直播间ID": data.get("roomId"),
+        "一级直播分区": data.get("areaNameParent"),
+        "二级直播分区": data.get("areaNameChild"),
         # 是否开启自动录制
         "自动录制": data.get("autoRecord"),
         "用户名": data.get("name"),
         "直播间标题": data.get("title"),
         "直播状态": data.get("streaming"),
         "录制状态": data.get("recording"),
-        "直播服务器域名": data.get("streamHost"),
-
-
-    }
+        "会话时长": str(sessionDuration).split(".")[0],
+        "总接受字节数": data.get("recordingStats")["totalInputBytes"],
+        "总写入字节数": data.get("recordingStats")["totalOutputBytes"],
+        "当前文件的大小": data.get("recordingStats")["currentFileSize"],
+        "总时长": str(sessionMaxTimestamp).split(".")[0],
+        "直播服务器域名": data.get("ioStats")["streamHost"],
+        }
     return formatted_data
 
 

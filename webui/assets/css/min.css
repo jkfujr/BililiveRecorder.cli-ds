@@ -178,32 +178,8 @@ sidebar-data-tag {
   height: 62px !important;
   padding: 0 !important;
   /* 层级3 */
-  z-index: 3 !important;;
+  z-index: 4 !important;;
   background-color: rgba(255, 255, 255, 0.8) !important;
   backdrop-filter: blur(8px);
   border-bottom: 0.5px solid rgba(51, 54, 57, 0.5);
-}
-
-.test {
-  font-family: var(--bs-body-font-family);
-  font-size: var(--bs-body-font-size);
-  font-weight: var(--bs-body-font-weight);
-  line-height: var(--bs-body-line-height);
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
-  box-sizing: border-box;
-  width: 100%;
-  text-align: inherit;
-  position: relative;
-  display: block;
-  padding: var(--bs-list-group-item-padding-y)
-    var(--bs-list-group-item-padding-x);
-  color: var(--bs-list-group-color);
-  text-decoration: none;
-  background-color: var(--bs-list-group-bg);
-  border: var(--bs-list-group-border-width) solid
-    var(--bs-list-group-border-color);
-  transition: all 0.3s ease-in-out;
-  border-top-left-radius: inherit;
-  border-top-right-radius: inherit;
 }

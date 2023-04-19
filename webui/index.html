@@ -11,12 +11,6 @@
     <!--bootstrap css-->
     <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.min.css"
       crossorigin="anonymous">
-    <!--fontawesome js-->
-    <script src="./assets/js/fontawesome/min.js"
-      crossorigin="anonymous"></script>
-    <!-- bootstrap js cdn -->
-    <script src="./assets/js/bootstrap/bootstrap.bundle.js"
-      crossorigin="anonymous"></script>
   </head>
   <script>
 
@@ -27,13 +21,21 @@
       .then(response => response.json())
       // 处理数据，在该函数内渲染详细数据
       .then(data => {
-        document.getElementById('直播间标题').innerText = data['直播间标题'];
+        let name = data['用户名'];
         let roomId = data['直播间ID'];
         let bililive = 'https://live.bilibili.com/' + roomId;
-        document.getElementById('直播间ID链接').innerHTML = 'ID <a href="' + bililive + '">' + roomId + '</a>';
-        document.getElementById('自动录制').innerText = data['自动录制'] ? '监控中' : '';
+        document.getElementById('用户名加直播间ID加链接').innerHTML = name + ' · ' + '<a href="' + bililive + '">' + roomId + '</a>';
+        
+        document.getElementById('直播间标题').innerText = data['直播间标题'];
+        
+        let areaNameParent = data['一级直播分区'];
+        let areaNameChild = data['二级直播分区'];
+        document.getElementById('直播分区').innerHTML = areaNameParent + ' · ' + areaNameChild;
+
         document.getElementById('直播状态').innerText = '直播状态 ' + (data['直播状态'] ? '直播中' : '摸鱼中');
-        document.getElementById('录制状态').innerText = '录制状态 ' + (data['录制状态'] ? '录制中' : '监控中');
+        document.getElementById('录制状态').innerText = '录制状态 ' + (data['录制状态'] ? '录制中' : data['自动录制'] ? '监控中' : '');
+        document.getElementById('会话时长').innerText = '会话时长 ' + data['会话时长'];
+        document.getElementById('总时长').innerText = '已录制时长 ' + data['总时长'];
         document.getElementById('直播服务器域名').innerText = '直播服务器域名 ' + data['直播服务器域名'];
       });
   }
@@ -165,12 +167,12 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link active" aria-current="page"
-              href="/bililiveRec/api">这是一个API</a>
-            <a class="nav-link" href="#">测</a>
-            <a class="nav-link" href="#">测</a>
-            <a class="nav-link" href="#">你</a>
-            <a class="nav-link" href="#">的</a>
-            <a class="nav-link" href="#">现在正在设计并实现数据库存储录播姬数据</a>
+              href="/bililiveRec/api" target="_blank">>这是一个API喵</a>
+            <a class="nav-link active"
+              href="https://github.com/jkfujr/BililiveRecorder.cli-ds"
+              target="_blank">>这是一个Github喵</a>
+            <a class="nav-link active" href="#">>进度:
+              现在正在实现数据库存储录播姬数据，以此实现分析展示更多数据</a>
           </div>
         </div>
       </div>
@@ -190,16 +192,25 @@
     <div class="main-frame">
       <!-- 主内容区-详细数据 -->
       <div class="main-frame-data">
-        <h2 class="fs-1" id="直播间标题"></h2>
-        <div class="fs-3" id="直播间ID链接"></div>
-        <div class="fs-3" id="自动录制"></div>
-        <div class="fs-3" id="直播状态"> </div>
-        <div class="fs-3" id="录制状态"></div>
-        <div class="fs-3" id="直播服务器域名"></div>
+        <h1 class="fs-1" id="直播间标题"></h1>
+        <hr>
+        <h2 class="fs-2" id="用户名加直播间ID加链接"></h2>
+        <div class="fs-4" id="直播分区"></div>
+        <div class="fs-5" id="直播状态"> </div>
+        <div class="fs-5" id="录制状态"></div>
+        <div class="fs-5" id="会话时长"></div>
+        <div class="fs-5" id="总时长"></div>
+        <div class="fs-5" id="直播服务器域名"></div>
       </div>
     </div>
   </body>
-  <!-- 引用jQuery，放在外面保证能够引用 -->
+  <!--fontawesome-->
+  <script src="./assets/js/fontawesome/min.js"
+    crossorigin="anonymous"></script>
+  <!-- bootstrap -->
+  <script src="./assets/js/bootstrap/bootstrap.bundle.js"
+    crossorigin="anonymous"></script>
+  <!-- jQuery -->
   <script src="./assets/js/jquery/jquery-3.6.4.min.js"></script>
   <!-- 搜索框，放在最后进行事件绑定 -->
   <script src="./assets/js/sidebar-search.js"></script>
