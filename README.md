@@ -1,6 +1,7 @@
 # 简介
 
-![截图_2023-04-14_06-16-48](https://user-images.githubusercontent.com/39889850/231895578-1c243467-7f52-4ea3-a9ab-0eb1919220d7.png)
+![截图_2023-04-20_04-01-56](https://user-images.githubusercontent.com/39889850/233187311-206378ae-4770-404d-bbf2-45a6cf0ec491.png)
+
 
 一个用 python 实现的"多"录播姬命令行简单的信息展示
 
