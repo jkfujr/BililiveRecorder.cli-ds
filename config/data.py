@@ -50,10 +50,19 @@ def format_data_single(data: Dict) -> Dict:
     # 时间格式化
     sessionDuration_duration_ms = round(float(data.get("recordingStats")["sessionDuration"]))
     sessionMaxTimestamp_duration_ms = round(float(data.get("recordingStats")["sessionMaxTimestamp"]))
-    
-
     sessionDuration = datetime.timedelta(milliseconds=sessionDuration_duration_ms)
     sessionMaxTimestamp = datetime.timedelta(milliseconds=sessionMaxTimestamp_duration_ms)
+    # 数据格式化
+    totalInputBytes = int(data.get("recordingStats")["totalInputBytes"])
+    totalOutputBytes = int(data.get("recordingStats")["totalOutputBytes"])
+    currentFileSize = int(data.get("recordingStats")["currentFileSize"])
+    
+
+    totalInput_Gb = round(totalInputBytes / (1024**3), 2)
+    totalOutput_Gb = round(totalOutputBytes / (1024**3), 2)
+    currentFileSize_Gb = round(currentFileSize / (1024**3), 2)
+
+
 
     formatted_data = {
         "录播姬ID": data.get("objectId"),
@@ -67,9 +76,9 @@ def format_data_single(data: Dict) -> Dict:
         "直播状态": data.get("streaming"),
         "录制状态": data.get("recording"),
         "会话时长": str(sessionDuration).split(".")[0],
-        "总接受字节数": data.get("recordingStats")["totalInputBytes"],
-        "总写入字节数": data.get("recordingStats")["totalOutputBytes"],
-        "当前文件的大小": data.get("recordingStats")["currentFileSize"],
+        "总接受字节数": f"{totalInput_Gb} GB",
+        "总写入字节数": f"{totalOutput_Gb} GB",
+        "当前文件的大小": f"{currentFileSize_Gb} GB*",
         "总时长": str(sessionMaxTimestamp).split(".")[0],
         "直播服务器域名": data.get("ioStats")["streamHost"],
         }

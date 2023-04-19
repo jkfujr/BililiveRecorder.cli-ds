@@ -35,6 +35,9 @@
         document.getElementById('直播状态').innerText = '直播状态 ' + (data['直播状态'] ? '直播中' : '摸鱼中');
         document.getElementById('录制状态').innerText = '录制状态 ' + (data['录制状态'] ? '录制中' : data['自动录制'] ? '监控中' : '');
         document.getElementById('会话时长').innerText = '会话时长 ' + data['会话时长'];
+        document.getElementById('总接受字节数').innerText = '总接受字节数 ' + data['总接受字节数'];
+        document.getElementById('总写入字节数').innerText = '总写入字节数 ' + data['总写入字节数'];
+        document.getElementById('当前文件的大小').innerText = '当前文件的大小 ' + data['当前文件的大小'];
         document.getElementById('总时长').innerText = '已录制时长 ' + data['总时长'];
         document.getElementById('直播服务器域名').innerText = '直播服务器域名 ' + data['直播服务器域名'];
       });
@@ -171,7 +174,7 @@
             <a class="nav-link active"
               href="https://github.com/jkfujr/BililiveRecorder.cli-ds"
               target="_blank">>这是一个Github喵</a>
-            <a class="nav-link active" href="#">>进度:
+            <a class="nav-link active" href="./assets/images/数据库数据更新逻辑.png" target="_blank">>进度:
               现在正在实现数据库存储录播姬数据，以此实现分析展示更多数据</a>
           </div>
         </div>
@@ -199,6 +202,9 @@
         <div class="fs-5" id="直播状态"> </div>
         <div class="fs-5" id="录制状态"></div>
         <div class="fs-5" id="会话时长"></div>
+        <div class="fs-5" id="总接受字节数"></div>
+        <div class="fs-5" id="总写入字节数"></div>
+        <div title="如果你这项与上面的'总接受/写入字节数'并不相近；喜喜喜喜报，你的录播碎辣" class="fs-5" id="当前文件的大小"></div>
         <div class="fs-5" id="总时长"></div>
         <div class="fs-5" id="直播服务器域名"></div>
       </div>
