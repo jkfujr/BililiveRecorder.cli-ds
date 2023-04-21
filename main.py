@@ -62,7 +62,7 @@ if __name__ == "__main__":
         "main:app",
         host="0.0.0.0",
         port=9101,
-        # ssl相关，不需要就注释掉
+        # ssl证书路径
         # ssl_keyfile="./ssl/wll.114514.plus.key",
         # ssl_certfile="./ssl/wll.114514.plus.crt",
         log_level="info",
