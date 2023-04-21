@@ -1,6 +1,6 @@
 # ssl相关
-import ssl
-from ssl import SSLContext
+# import ssl
+# from ssl import SSLContext
 from typing import Dict, List
 
 import uvicorn
