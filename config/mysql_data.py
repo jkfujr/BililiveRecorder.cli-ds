@@ -16,20 +16,6 @@ conn = pymysql.connect(host='10.0.0.111',
 # 创建游标
 cur = conn.cursor()
 
-# API接口列表
-BililiveRec_API_LIST = [
-    "http://10.0.0.100:9001/api/room",
-    "http://10.0.0.100:9002/api/room",
-    "http://10.0.0.100:9003/api/room",
-    "http://10.0.0.100:9004/api/room",
-    "http://10.0.0.100:9005/api/room",
-    "http://10.0.0.100:9010/api/room",
-    "http://10.0.0.100:9080/api/room",
-    "http://10.0.0.100:9090/api/room",
-    "http://10.0.0.100:9091/api/room",
-    "http://10.0.0.100:9098/api/room",
-    "http://10.0.0.100:9099/api/room"
-]
 
 # 循环读取API地址
 for api_url in BililiveRec_API_LIST:
