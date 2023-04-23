@@ -1,9 +1,9 @@
 import datetime
 import requests
 from typing import Dict, List
+
 # 引用api文件
-# from api import BililiveRec_API_LIST
-from config.api import BililiveRec_API_LIST
+from config.rec_api import BililiveRec_API_LIST
 
 
 def get_data() -> List[Dict]:

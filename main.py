@@ -9,9 +9,9 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 # 引用整理好的数据
-from config.data import get_data
-from config.data import get_all_data
-from config.data import format_data_single
+from config.data_api import get_data
+from config.data_api import get_all_data
+from config.data_api import format_data_single
 
 app = FastAPI(
     docs_url=None,

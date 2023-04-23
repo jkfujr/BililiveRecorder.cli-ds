@@ -7,7 +7,7 @@
 
 演示 [https://wll.114514.plus:30110/](https://wll.114514.plus:30110/)
 
-    打不开的话可能是我在写啥东西 (比github上的新
+    演示后端数据使用数据库存储(测试)，打不开的话可能是我在写啥东西 (比github上的新
 
 ## 一、要求
 
@@ -30,8 +30,7 @@ fastapi、uvicorn、Jinja2、SSLContext(支持SSL访问，可选)
 # 录播姬的api
 BililiveRec_API_LIST = [
     "http://录播姬A的IP:端口/api/room",
-    "http://录播姬B的IP:端口/api/roo
-    m"
+    "http://录播姬B的IP:端口/api/room"
 ]
 ```
 
@@ -56,9 +55,9 @@ $ python main.py
 ## 三、更新计划(饼)
 
 ```
-缓存机制
-日志
-数据库
+- 数据库 (测试中)
+- 日志
+- 缓存机制
 ```
 
 ## 四、联系
@@ -70,4 +69,5 @@ Rec-NIC 今天也是咕咕咕的一天 [722935608](https://jq.qq.com/?_wv=1027&k
 ## 五、相关
 
 > BililiveRecorder https://github.com/Bililive/BililiveRecorder
+> 
 > BililiveRecorder-WebUI https://github.com/BililiveRecorder/BililiveRecorder-WebUI

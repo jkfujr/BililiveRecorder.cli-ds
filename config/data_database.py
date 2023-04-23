@@ -3,7 +3,7 @@ import pymysql
 import time
 
 # 引用api文件
-from config.api import BililiveRec_API_LIST
+from config.rec_api import BililiveRec_API_LIST
 
 # 连接MySQL数据库
 conn = pymysql.connect(host='10.0.0.111',
