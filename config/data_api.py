@@ -69,7 +69,6 @@ def format_data_single(data: Dict) -> Dict:
         "直播间ID": data.get("roomId"),
         "一级直播分区": data.get("areaNameParent"),
         "二级直播分区": data.get("areaNameChild"),
-        # 是否开启自动录制
         "自动录制": data.get("autoRecord"),
         "用户名": data.get("name"),
         "直播间标题": data.get("title").replace('"', " "),
