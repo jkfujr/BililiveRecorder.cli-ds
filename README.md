@@ -15,7 +15,8 @@
 
 ```
 # 需要以下模块
-fastapi、uvicorn、Jinja2、SSLContext(支持SSL访问，可选)
+fastapi、uvicorn、Jinja2、
+SSLContext(支持SSL，可选)
 ```
 
 ## 二、使用

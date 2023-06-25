@@ -72,14 +72,12 @@ for api_url in BililiveRec_API_LIST:
                 else:
                     cur.execute("""UPDATE user_data SET title=%s, areaNameParent=%s, areaNameChild=%s, streaming=%s, recording=%s, utime=%s WHERE roomId=%s AND id=(SELECT MAX(id) FROM user_data WHERE roomId=%s)""",
                     (data['直播间标题'], data['一级直播分区'], data['二级直播分区'], data['是否在直播'], data['是否在录制'], data['更新时间'], data['直播间ID'], data['直播间ID']))
-                    conn.commit()
             # 如果 API数据 中对应直播间数据 直播中，
             else:
                 # 数据库 中对应直播间数据 未开播，使用 API数据，新创建一行数据
                 if db_data[9] == 0:
                     cur.execute("INSERT INTO user_data (roomId, name, title, shortId, areaNameParent, areaNameChild, autoRecord, recording, streaming, sessionDuration, totalInputBytes, totalOutputBytes, currentFileSize, sessionMaxTimestamp, streamHost, ctime, utime) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                                 (data['直播间ID'], data['用户名'], data['直播间标题'], data['直播间短ID'], data['一级直播分区'], data['二级直播分区'], data['是否启用自动录制'], data['是否在录制'], data['是否在直播'], data['会话时长'], data['总接受字节数'], data['总写入字节数'], data['当前文件的大小'], data['总时长'], data['直播服务器域名'], data['创建时间'], data['更新时间']))
-                    conn.commit()
                 # 数据库 中对应直播间数据 直播中
                 else:
                     # 如果 API数据 中对应直播间的 "会话时长" 大于 数据库 中对应直播间的 "sessionDuration(会话时长)" 字段，
@@ -87,24 +85,22 @@ for api_url in BililiveRec_API_LIST:
                     if db_data[10] < data['会话时长']:
                         cur.execute("""UPDATE user_data SET sessionDuration=%s, totalInputBytes=%s, totalOutputBytes=%s, currentFileSize=%s, sessionMaxTimestamp=%s, streamHost=%s, utime=%s WHERE roomId=%s AND id=(SELECT MAX(id) FROM user_data WHERE roomId=%s)""",
                                     (data['会话时长'], data['总接受字节数'], data['总写入字节数'], data['当前文件的大小'], data['总时长'], data['直播服务器域名'], data['更新时间'], data['直播间ID'], data['直播间ID']))
-                        conn.commit()
                     else:
                         # 如果 API数据 中对应直播间的 "会话时长" 小于 数据库 中对应直播间的 "sessionDuration(会话时长)" 字段，
                         # 则使用"all_data"中对应直播间的数据更新数据库里对应直播间行数据中的 "streaming"、"recording"、"utime" 这三个字段，并使用"all_data"中对应直播间的数据，创建新一行数据。
                         cur.execute("""UPDATE user_data SET streaming=%s, recording=%s, utime=%s WHERE roomId=%s AND id=(SELECT MAX(id) FROM user_data WHERE roomId=%s)""",
                             (data['是否在直播'], data['是否在录制'], data['更新时间'], data['直播间ID'], data['直播间ID']))
-                        conn.commit()
                         # 创建新一行数据。
                         cur.execute("INSERT INTO user_data (roomId, name, title, shortId, areaNameParent, areaNameChild, autoRecord, recording, streaming, sessionDuration, totalInputBytes, totalOutputBytes, currentFileSize, sessionMaxTimestamp, streamHost, ctime, utime) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                                     (data['直播间ID'], data['用户名'], data['直播间标题'], data['直播间短ID'], data['一级直播分区'], data['二级直播分区'], data['是否启用自动录制'], data['是否在录制'], data['是否在直播'], data['会话时长'], data['总接受字节数'], data['总写入字节数'], data['当前文件的大小'], data['总时长'], data['直播服务器域名'], data['创建时间'], data['更新时间']))
-                        conn.commit()
         else:
             # 如果数据库对应直播间"roomId"字段中没有"all_data"中"直播间ID"字段对应的数据，则插入对应新一行数据
             cur.execute("INSERT INTO user_data (roomId, name, title, shortId, areaNameParent, areaNameChild, autoRecord, recording, streaming, sessionDuration, totalInputBytes, totalOutputBytes, currentFileSize, sessionMaxTimestamp, streamHost, ctime, utime) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                         (data['直播间ID'], data['用户名'], data['直播间标题'], data['直播间短ID'], data['一级直播分区'], data['二级直播分区'], data['是否启用自动录制'], data['是否在录制'], data['是否在直播'], data['会话时长'], data['总接受字节数'], data['总写入字节数'], data['当前文件的大小'], data['总时长'], data['直播服务器域名'], data['创建时间'], data['更新时间']))
-            conn.commit()
 
 
-# 关闭 cursor 和连接
+
+# 提交事务并关闭 cursor 和连接
+conn.commit()
 cur.close()
 conn.close()

@@ -13,10 +13,7 @@ from config.data_api import get_data
 from config.data_api import get_all_data
 from config.data_api import format_data_single
 
-app = FastAPI(
-    docs_url=None,
-    redoc_favicon_url="/webui/assets/logo.ico",
-)
+app = FastAPI()
 
 
 # 静态文件
@@ -63,8 +60,8 @@ if __name__ == "__main__":
         host="0.0.0.0",
         port=9101,
         # ssl证书路径
-        # ssl_keyfile="./ssl/wll.114514.plus.key",
-        # ssl_certfile="./ssl/wll.114514.plus.crt",
+        # ssl_keyfile="./config/ssl/wll.114514.plus.key",
+        # ssl_certfile="./config/ssl/wll.114514.plus.crt",
         log_level="info",
         reload=True
     )

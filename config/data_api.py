@@ -72,7 +72,7 @@ def format_data_single(data: Dict) -> Dict:
         # 是否开启自动录制
         "自动录制": data.get("autoRecord"),
         "用户名": data.get("name"),
-        "直播间标题": data.get("title"),
+        "直播间标题": data.get("title").replace('"', " "),
         "直播状态": data.get("streaming"),
         "录制状态": data.get("recording"),
         "会话时长": str(sessionDuration).split(".")[0],
