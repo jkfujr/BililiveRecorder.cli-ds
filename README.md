@@ -11,9 +11,9 @@
 
 # 使用说明
 
-## 1. 需要Python 3.10及以上版本
+1. 需要Python 3.10及以上版本
 
-## 2. 安装依赖
+2. 安装依赖
 
 ```
 pip install -r requirements.txt
@@ -22,7 +22,7 @@ pip install -r requirements.txt
 pip install SSLContext
 ```
 
-## 3. 添加 API
+# 3. 添加 API
 
 ```
 # 编辑 `./config/rec_api.py` 文件
@@ -34,7 +34,7 @@ BililiveRec_API_LIST = [
 ]
 ```
 
-## 3. 运行
+3. 运行
 
 ```
 # Windows
@@ -44,7 +44,7 @@ BililiveRec_API_LIST = [
 $ python main.py
 ```
 
-## 4. 访问 [http://127.0.0.1:9101](http://127.0.0.1:9101) (默认)
+4. 访问 [http://127.0.0.1:9101](http://127.0.0.1:9101) (默认)
 
 
 
