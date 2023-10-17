@@ -1,5 +1,6 @@
 /* 整体框架 */
 body {
+  font-family: Arial, sans-serif;
   font-size: 18px;
   /* 随机二刺螈图 */
   background-image: url("https://www.loliapi.com/acg/pc/");
@@ -11,8 +12,6 @@ body {
   /* 在暗色模式下设置 body 样式 */
   color: var(--color-text);
   background-color: var(--color-bg);
-  /* 全局雅黑 */
-  font-family: "Microsoft YaHei";
 }
 /* 在暗色模式下设置 body 样式 */
 @media (prefers-color-scheme: dark) {

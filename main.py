@@ -58,7 +58,7 @@ if __name__ == "__main__":
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
-        port=9101,
+        port=11111,
         # ssl证书路径
         # ssl_keyfile="./config/ssl/wll.114514.plus.key",
         # ssl_certfile="./config/ssl/wll.114514.plus.crt",

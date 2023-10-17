@@ -9,24 +9,23 @@
 
     演示后端数据使用数据库存储(测试)，打不开的话可能是我在写啥东西 (比github上的新
 
-## 一、要求
+# 使用说明
 
-- Python 3.10
+1. 需要Python 3.10及以上版本
 
-```
-# 需要以下模块
-fastapi、uvicorn、Jinja2、
-SSLContext(支持SSL，可选)
-```
-
-## 二、使用
-
-### 1. 下载
-
-### 2. 添加 API
+2. 安装依赖
 
 ```
-# 编辑 `./config/api.py` 文件
+pip install -r requirements.txt
+
+# (支持SSL，可选)
+pip install SSLContext
+```
+
+3. 添加 API
+
+```
+# 编辑 `./config/rec_api.py` 文件
 
 # 录播姬的api
 BililiveRec_API_LIST = [
@@ -35,25 +34,21 @@ BililiveRec_API_LIST = [
 ]
 ```
 
-### 3. 运行
-
-#### Windows
+3. 运行
 
 ```
+# Windows
 双击 run.bat
-```
 
-#### Linux
-
-```
+## Linux
 $ python main.py
 ```
 
-### 4. 访问 [http://127.0.0.1:9101](http://127.0.0.1:9101)
+4. 访问 [http://127.0.0.1:9101](http://127.0.0.1:9101)(默认)
 
-(默认的情况下)
 
-## 三、更新计划(饼)
+
+# 更新计划(饼)
 
 ```
 - 数据库 (测试中)
@@ -61,13 +56,13 @@ $ python main.py
 - 缓存机制
 ```
 
-## 四、联系
+# 联系方式
 
 Rec-NIC 今天也是咕咕咕的一天 [722935608](https://jq.qq.com/?_wv=1027&k=KI1Ly3kG)
 
     (录播姬非官方闲聊群但是官方)
 
-## 五、相关
+# 相关项目
 
 > BililiveRecorder https://github.com/Bililive/BililiveRecorder
 > 
