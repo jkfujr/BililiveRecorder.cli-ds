@@ -7,7 +7,7 @@
 
 演示 [https://wll.114514.plus:11111/](https://wll.114514.plus:11111/)
 
-    演示后端数据使用数据库存储(测试)，打不开的话可能是我在写啥东西 (比github上的新
+重制版 [https://github.com/jkfujr/Rec-Stutas](https://github.com/jkfujr/Rec-Stutas)]
 
 ## 使用说明
 
@@ -57,7 +57,7 @@ $ python main.py
 
 ## 联系方式
 
-Rec-NIC 今天也是咕咕咕的一天 [722935608](https://jq.qq.com/?_wv=1027&k=KI1Ly3kG)
+Rec-NIC 今天也是咕咕咕的一天 179319267
 
     (录播姬非官方闲聊群但是官方)
 
